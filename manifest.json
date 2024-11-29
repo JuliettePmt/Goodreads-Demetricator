@@ -1,0 +1,25 @@
+{
+    "name": "Goodreads Demetricator",
+    "version": "1.0.0",
+    "description": "De-quantify GoodReads",
+    "manifest_version": 3,
+    "author": "Juliette Parmentier",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Goodreads Demetricator"
+    },
+    "icons": {
+        "48": "images/logo_goodreads.png",
+        "128": "images/logo_goodreads.png"
+      },
+
+    "background": { 
+        "service_worker": "background.js"   
+        },   
+    "permissions": ["storage", "tabs", "scripting"], 
+    "content_scripts":[
+        { "matches":["<all_urls>"], 
+        "js": ["content.js"]
+        }   
+    ]
+}
