@@ -1,3 +1,43 @@
+
+////////////// STATS //////////////
+
+const targetUserStats = "#ReviewsSection";
+const processedClass = "processed-by-script"; // To avoid multiple treatments
+
+
+const new_observer = new MutationObserver(() => {
+    const userStats = document.querySelector(targetUserStats);
+
+    if (userStats) {
+        const reviewers = userStats.querySelectorAll(`div.ReviewerProfile__meta:not(.${processedClass})`); // Avoid to treat multiple times
+        const interactionsReview = userStats.querySelectorAll(`div.SocialFooter__statsContainer:not(.${processedClass})`)
+
+        const starRating = userStats.querySelectorAll(`span.RatingStars:not(.${processedClass})`)
+
+
+        reviewers.forEach(user => {
+            user.style.display = "none";
+            user.classList.add(processedClass); // Marked as treated
+        });
+
+        interactionsReview.forEach(stat => {
+            stat.style.display = "none";
+            stat.classList.add(processedClass);
+        })
+
+        starRating.forEach(rating => {
+            rating.remove();
+            rating.classList.add(processedClass);
+        })
+    }
+});
+
+new_observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+});
+
+
 // Author
 const author_stats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.PageSection > div.AuthorPreview > div > div.FeaturedPerson__profile > div.FeaturedPerson__container > div.FeaturedPerson__info > div.FeaturedPerson__infoPrimary > span")
 if (author_stats) {
@@ -19,8 +59,6 @@ const rating_distribution = document.querySelector("#ReviewsSection > div:nth-ch
 if (rating_distribution) {
     rating_distribution.style.display = "none";
 }
-
-
 
 
 const targetBookRecSelector = "#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__relatedTopContent > div > div > section > div.Carousel__inner > div > div > ul";
@@ -92,6 +130,8 @@ observer.observe(document.body, {
 
 
 
+////////////// COMMUNITY //////////////
+
 // Number of interactions
 const nb_interactions = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.BookPageMetadataSection__ratingStats > a > div:nth-child(2) > div")
 if (nb_interactions) {
@@ -105,54 +145,6 @@ if (reading_and_want_to_read) {
     // Divider :
     document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > hr:nth-child(7)").style.display = "none";
 }
-
-
-// Shopping button
-shopping_button = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__leftColumn > div > div.BookActions > div:nth-child(2) > div")
-
-if (shopping_button) {
-    shopping_button.setAttribute("style", "display: none !important; visibility: hidden !important;");
-}
-
-
-// User stats
-const targetUserStats = "#ReviewsSection";
-const processedClass = "processed-by-script"; // To avoid multiple treatments
-
-
-const new_observer = new MutationObserver(() => {
-    const userStats = document.querySelector(targetUserStats);
-
-    if (userStats) {
-        const reviewers = userStats.querySelectorAll(`div.ReviewerProfile__meta:not(.${processedClass})`); // Avoid to treat multiple times
-        const interactionsReview = userStats.querySelectorAll(`div.SocialFooter__statsContainer:not(.${processedClass})`)
-
-        const starRating = userStats.querySelectorAll(`span.RatingStars:not(.${processedClass})`)
-
-
-        reviewers.forEach(user => {
-            user.style.display = "none";
-            user.classList.add(processedClass); // Marked as treated
-        });
-
-        interactionsReview.forEach(stat => {
-            stat.style.display = "none";
-            stat.classList.add(processedClass);
-        })
-
-        starRating.forEach(rating => {
-            rating.remove();
-            rating.classList.add(processedClass);
-        })
-    }
-});
-
-new_observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-});
-
-
 
 // Discussion section
 quoteStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__stats")
@@ -178,3 +170,12 @@ if (questionStats) {
 }
 
 
+
+////////////// COMMERCIAL //////////////
+
+// Shopping button
+shopping_button = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__leftColumn > div > div.BookActions > div:nth-child(2) > div")
+
+if (shopping_button) {
+    shopping_button.setAttribute("style", "display: none !important; visibility: hidden !important;");
+}
