@@ -1,30 +1,23 @@
-let communityStatsArray = []
-let ratingsArray = []
-
 // Author
 const author_stats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.PageSection > div.AuthorPreview > div > div.FeaturedPerson__profile > div.FeaturedPerson__container > div.FeaturedPerson__info > div.FeaturedPerson__infoPrimary > span")
 if (author_stats) {
     author_stats.style.display = "none";
-    communityStatsArray.push(author_stats)
 }
 
 // Ratings
 const header_rating = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.BookPageMetadataSection__ratingStats > a > div:nth-child(1)")
 if (header_rating) {
   header_rating.textContent = "";
-  ratingsArray.push(header_rating)
 }
 
 const below_rating = document.querySelector("#ReviewsSection > div:nth-child(7) > div.ReviewsSectionStatistics > div.ReviewsSectionStatistics__ratingStatistics > div")
 if (below_rating) {
     below_rating.style.display = "none";
-    ratingsArray.push(below_rating)
 }
 
 const rating_distribution = document.querySelector("#ReviewsSection > div:nth-child(7) > div.ReviewsSectionStatistics")
 if (rating_distribution) {
     rating_distribution.style.display = "none";
-    ratingsArray.push(rating_distribution)
 }
 
 
@@ -103,7 +96,6 @@ observer.observe(document.body, {
 const nb_interactions = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.BookPageMetadataSection__ratingStats > a > div:nth-child(2) > div")
 if (nb_interactions) {
     nb_interactions.textContent = "";
-    communityStatsArray.push(nb_interactions)
 }
 
 // Currently reading & wanting to read
@@ -112,7 +104,6 @@ if (reading_and_want_to_read) {
     reading_and_want_to_read.style.display = "none";
     // Divider :
     document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > hr:nth-child(7)").style.display = "none";
-    communityStatsArray.push(reading_and_want_to_read)
 }
 
 
@@ -164,10 +155,7 @@ new_observer.observe(document.body, {
 
 
 // Discussion section
-
-
 quoteStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__stats")
-
 if (quoteStats) {
     quoteStats.style.display = "none";
     quotesText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
