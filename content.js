@@ -14,7 +14,6 @@ const new_observer = new MutationObserver(() => {
 
         const starRating = userStats.querySelectorAll(`span.RatingStars:not(.${processedClass})`)
 
-
         reviewers.forEach(user => {
             user.style.display = "none";
             user.classList.add(processedClass); // Marked as treated
@@ -23,12 +22,13 @@ const new_observer = new MutationObserver(() => {
         interactionsReview.forEach(stat => {
             stat.style.display = "none";
             stat.classList.add(processedClass);
-        })
+        });
 
         starRating.forEach(rating => {
             rating.remove();
             rating.classList.add(processedClass);
-        })
+        });
+
     }
 });
 
@@ -36,6 +36,7 @@ new_observer.observe(document.body, {
     childList: true,
     subtree: true,
 });
+
 
 
 // Author
@@ -72,8 +73,12 @@ const observer = new MutationObserver((mutations) => {
     console.log("DOM mutation detected."); // To spot dynamic mutations
 
     const bookCards = document.querySelectorAll(bookCardSelector);
+    const readingChallengeSelector = document.querySelector("#bodycontainer > div > div.gr-mainContentContainer > main > div.homeTertiaryColumn > section:nth-child(3) > div")
     const listRecommendations = document.querySelectorAll(listRecSelector);
     const listMetadata = document.querySelectorAll(listMetadataSelector);
+
+    const listRatings = document.querySelectorAll("div.communityRating");
+
 
 
     if (bookCards.length > 0) {
@@ -98,7 +103,7 @@ const observer = new MutationObserver((mutations) => {
     };
 
 
-// Deal with list statistics
+    // Deal with list statistics
     if (listRecommendations.length > 0) {
         listRecommendations.forEach(list => {
             const listStats = list.querySelectorAll("div.CollectionCard__subText:not(.hidden-by-script)");
@@ -119,6 +124,15 @@ const observer = new MutationObserver((mutations) => {
         });
     };
 
+    if (listRatings.length > 0) {
+        console.log("Ratings found")
+        listRatings.forEach(rating => {
+            rating.setAttribute("style", "display: none !important; visibility: hidden !important;");
+            rating.classList.add("hidden-by-script");
+            rating.remove();
+        });
+    };
+
 });
 
 observer.observe(document.body, {
@@ -127,6 +141,31 @@ observer.observe(document.body, {
 });
 
 
+const interval = setInterval(() => {
+    const readingChallengeElement = document.querySelector("#bodycontainer > div > div.gr-mainContentContainer > main > div.homeSecondaryColumn > section:nth-child(2) > div")
+
+    if (readingChallengeElement) {
+        console.log("Reading challenge element found. Hiding and deleting...");
+
+        readingChallengeElement.setAttribute("style", "display: none !important;");
+        
+        // Divider
+        const dividerReadingChallenge = document.querySelector("#bodycontainer > div > div.gr-mainContentContainer > main > div.homeTertiaryColumn > section:nth-child(3)");
+        if (dividerReadingChallenge) {
+            dividerReadingChallenge.remove();
+        }
+
+        clearInterval(interval);
+    }
+
+}, 100); // Checks every 50ms
+
+
+// Votes for Goodreads Choice Awards
+const voteCast = document.querySelector("div.choiceWidget__votesCast")
+if (voteCast) {
+    voteCast.remove();
+}
 
 
 
@@ -179,3 +218,5 @@ shopping_button = document.querySelector("#__next > div.PageFrame.PageFrame--sit
 if (shopping_button) {
     shopping_button.setAttribute("style", "display: none !important; visibility: hidden !important;");
 }
+
+

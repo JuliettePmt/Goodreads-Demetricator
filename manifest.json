@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "author": "Juliette Parmentier",
     "action":{
-        "default_popup": "index.html",
+        "default_popup": "visual/index.html",
         "default_title": "Goodreads Demetricator"
     },
     "icons": {
