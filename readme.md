@@ -5,6 +5,7 @@ A Chrome extension removing all statistics, rankings, ratings, etc. from the int
 This experiment was inspired by [Ben Grosser](https://bengrosser.com/) and his [Facebook Demetricator](https://chromewebstore.google.com/detail/facebook-demetricator/dbkgglbefgkimiadfjmgnkjmaoahephg).
 
 
-![Before](https://github.com/[JuliettePmt]/[Goodreads-Demetricator]/blob/[main]/images/Before.png?raw=true)
+
+![Before]([https://github.com/[JuliettePmt]/[Goodreads-Demetricator]/blob/[main]/images/Before.png](https://github.com/JuliettePmt/Goodreads-Demetricator/blob/main/images/After.png?raw=true)
 
 ![After](https://github.com/[JuliettePmt]/[Goodreads-Demetricator]/blob/[main]/images/After.png?raw=true)
