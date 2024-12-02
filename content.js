@@ -8,9 +8,7 @@ community();
 ratings();
 
 
-if (opt_reading_challenge == True) {
-    readingChallenge();
-}
+readingChallenge();
 
 
 // execute : npx webpack

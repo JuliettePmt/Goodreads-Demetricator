@@ -1,31 +1,46 @@
 export function readingChallenge() {
-
-    // Javascript
-    let checkboxReadingChallenge = document.getElementById("reading_challenge")
-        if (checkboxReadingChallenge.checked) {
-            const couleur = checkboxReadingChallenge.value
-            console.log(couleur)
+    // Vérifier si la checkbox est cochée
+    chrome.storage.sync.get("readingChallengeEnabled", (data) => {
+        const isEnabled = data.readingChallengeEnabled || false;
+        if (isEnabled) {
+            deleteReadingChallenge();
         }
+    });
 
-
-        // Reading challenge
-        const interval = setInterval(() => {
-            const readingChallengeElement = document.querySelector("#bodycontainer > div > div.gr-mainContentContainer > main > div.homeSecondaryColumn > section:nth-child(2) > div")
-        
-            if (readingChallengeElement) {
-                console.log("Reading challenge element found. Hiding and deleting...");
-        
-                readingChallengeElement.setAttribute("style", "display: none !important;");
-                
-                // Divider
-                const dividerReadingChallenge = document.querySelector("#bodycontainer > div > div.gr-mainContentContainer > main > div.homeTertiaryColumn > section:nth-child(3)");
-                if (dividerReadingChallenge) {
-                    dividerReadingChallenge.remove();
-                }
-        
-                clearInterval(interval);
+    // Écouter les changements de la checkbox depuis le popup
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message.action === "statusReadingChallenge") {
+            console.log("Message reçu :", message);
+            if (message.enabled) {
+                deleteReadingChallenge();
+            } else {
+                console.log("Reading Challenge désactivé.");
             }
-        
-        }, 100); // Checks every 50ms
+        }
+    });
+}
 
-} 
+function deleteReadingChallenge() {
+    // Suppression de l'élément Reading Challenge
+    const interval = setInterval(() => {
+        const readingChallengeElement = document.querySelector(
+            "#bodycontainer > div > div.gr-mainContentContainer > main > div.homeSecondaryColumn > section:nth-child(2) > div"
+        );
+
+        if (readingChallengeElement) {
+            console.log("Reading challenge trouvé. Suppression...");
+
+            readingChallengeElement.style.display = "none";
+
+            // Supprimer le diviseur
+            const divider = document.querySelector(
+                "#bodycontainer > div > div.gr-mainContentContainer > main > div.homeTertiaryColumn > section:nth-child(3)"
+            );
+            if (divider) {
+                divider.remove();
+            }
+
+            clearInterval(interval); // Arrêter l'intervalle une fois terminé
+        }
+    }, 100);
+}
