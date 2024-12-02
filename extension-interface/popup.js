@@ -1,21 +1,25 @@
+import { readingChallenge} from "./assets/reading_challenge.js";
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("reading_challenge");
 
-    // Charger l'état initial depuis chrome.storage
     chrome.storage.sync.get("readingChallengeEnabled", (data) => {
-        checkbox.checked = data.readingChallengeEnabled || false; // Par défaut décoché
+        checkbox.checked = data.readingChallengeEnabled || false; // Unchecked by default
     });
 
-    // Sauvegarder l'état lorsqu'il change
+    // Save state
     checkbox.addEventListener("change", () => {
         const isEnabled = checkbox.checked;
         chrome.storage.sync.set({ readingChallengeEnabled: isEnabled }, () => {
-            console.log("Reading Challenge activé :", isEnabled);
+            console.log("Reading Challenge enabled :", isEnabled);
+            readingChallenge();
         });
 
-        // Informer le content script du changement
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { action: "statusReadingChallenge", enabled: isEnabled });
         });
     });
 });
+
+// TBF : quand on actualise, le cochage se supprime

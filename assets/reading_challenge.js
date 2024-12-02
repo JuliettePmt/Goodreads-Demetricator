@@ -21,16 +21,14 @@ export function readingChallenge() {
 }
 
 function deleteReadingChallenge() {
-    // Suppression de l'élément Reading Challenge
     const interval = setInterval(() => {
         const readingChallengeElement = document.querySelector(
             "#bodycontainer > div > div.gr-mainContentContainer > main > div.homeSecondaryColumn > section:nth-child(2) > div"
         );
 
         if (readingChallengeElement) {
-            console.log("Reading challenge trouvé. Suppression...");
-
             readingChallengeElement.style.display = "none";
+            readingChallengeElement.remove();
 
             // Supprimer le diviseur
             const divider = document.querySelector(
