@@ -1,6 +1,8 @@
 
 ////////////// STATS //////////////
 
+export function community() {
+
 const targetUserStats = "#ReviewsSection";
 const processedClass = "processed-by-script"; // To avoid multiple treatments
 
@@ -30,12 +32,6 @@ const new_observer = new MutationObserver(() => {
         });
 
     }
-});
-
-new_observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-});
 
 
 // Author
@@ -68,9 +64,6 @@ const listRecSelector = "article.CollectionCard";
 const listMetadataSelector = "div.cell"
 
 
-const observer = new MutationObserver((mutations) => {
-    console.log("DOM mutation detected."); // To spot dynamic mutations
-
     const bookCards = document.querySelectorAll(bookCardSelector);
     const readingChallengeSelector = document.querySelector("#bodycontainer > div > div.gr-mainContentContainer > main > div.homeTertiaryColumn > section:nth-child(3) > div")
     const listRecommendations = document.querySelectorAll(listRecSelector);
@@ -99,6 +92,38 @@ const observer = new MutationObserver((mutations) => {
             });
 
         });
+    };
+
+    // Currently reading & wanting to read
+    const reading_and_want_to_read = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.SocialSignalsSection > div")
+    if (reading_and_want_to_read) {
+        reading_and_want_to_read.style.display = "none";
+        // Divider :
+        document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > hr:nth-child(7)").style.display = "none";
+    };
+
+    // Discussion section
+    const quoteStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__stats")
+    if (quoteStats) {
+        quoteStats.style.display = "none";
+        const quotesText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
+        quotesText.textContent = "Quotes"
+    };
+
+
+    const discussionStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(2) > div.DiscussionCard__middle > div.DiscussionCard__stats")
+    if (discussionStats) {
+        console.log("Discussion found")
+        discussionStats.style.display = "none";
+        const discussionsText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(2) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
+        discussionsText.textContent = "Discussions"
+    };
+
+    const questionStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(3) > div.DiscussionCard__middle > div.DiscussionCard__stats")
+    if (questionStats) {
+        questionStats.style.display = "none";
+        const questionsText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(3) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
+        questionsText.textContent = "Questions"
     };
 
 
@@ -132,12 +157,6 @@ const observer = new MutationObserver((mutations) => {
         });
     };
 
-});
-
-observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-});
 
 
 const interval = setInterval(() => {
@@ -164,7 +183,7 @@ const interval = setInterval(() => {
 const voteCast = document.querySelector("div.choiceWidget__votesCast")
 if (voteCast) {
     voteCast.remove();
-}
+};
 
 
 
@@ -174,37 +193,27 @@ if (voteCast) {
 const nb_interactions = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.BookPageMetadataSection__ratingStats > a > div:nth-child(2) > div")
 if (nb_interactions) {
     nb_interactions.textContent = "";
+};
+
+
+
+
+
+////////////// COMMERCIAL //////////////
+
+// Shopping button
+shopping_button = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__leftColumn > div > div.BookActions > div:nth-child(2) > div")
+
+if (shopping_button) {
+    shopping_button.setAttribute("style", "display: none !important; visibility: hidden !important;");
+};
+
+});
+
+new_observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+});
+
+
 }
-
-// Currently reading & wanting to read
-const reading_and_want_to_read = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > div.SocialSignalsSection > div")
-if (reading_and_want_to_read) {
-    reading_and_want_to_read.style.display = "none";
-    // Divider :
-    document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div.BookPage__gridContainer > div.BookPage__rightColumn > div.BookPage__mainContent > div.BookPageMetadataSection > hr:nth-child(7)").style.display = "none";
-}
-
-// Discussion section
-quoteStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__stats")
-if (quoteStats) {
-    quoteStats.style.display = "none";
-    quotesText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(1) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
-    quotesText.textContent = "Quotes"
-}
-
-
-discussionStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(2) > div.DiscussionCard__middle > div.DiscussionCard__stats")
-if (discussionStats) {
-    discussionStats.style.display = "none";
-    discussionsText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(2) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
-    discussionsText.textContent = "Discussions"
-}
-
-questionStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(3) > div.DiscussionCard__middle > div.DiscussionCard__stats")
-if (questionStats) {
-    questionStats.style.display = "none";
-    questionsText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(3) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
-    questionsText.textContent = "Questions"
-}
-
-
