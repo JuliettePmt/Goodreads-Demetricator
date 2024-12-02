@@ -18,7 +18,7 @@
         },   
     "permissions": ["storage", "tabs", "scripting"], 
     "content_scripts":[
-        { "matches":["goodreads.com/"], 
+        { "matches":["<all_urls>"], 
         "js": ["content.js"]
         }   
     ]
