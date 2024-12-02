@@ -4,5 +4,9 @@ A Chrome extension removing all statistics, rankings, ratings, etc. from the int
 
 This experiment was inspired by [Ben Grosser](https://bengrosser.com/) and his [Facebook Demetricator](https://chromewebstore.google.com/detail/facebook-demetricator/dbkgglbefgkimiadfjmgnkjmaoahephg).
 
+## Before :
+<img src="images/After.png" alt="Before" width="400"/>
+
+
 ## After :
-<img src="images/After.png" alt="After" width="200"/>
+<img src="images/After.png" alt="After" width="400"/>
