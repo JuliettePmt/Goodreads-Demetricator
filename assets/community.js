@@ -37,7 +37,6 @@ const listMetadataSelector = "div.cell"
 
     const discussionStats = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(2) > div.DiscussionCard__middle > div.DiscussionCard__stats")
     if (discussionStats) {
-        console.log("Discussion found")
         discussionStats.style.display = "none";
         const discussionsText = document.querySelector("#__next > div.PageFrame.PageFrame--siteHeaderBanner > main > div:nth-child(4) > div > div > a:nth-child(2) > div.DiscussionCard__middle > div.DiscussionCard__metaRow > span")
         discussionsText.textContent = "Discussions"
